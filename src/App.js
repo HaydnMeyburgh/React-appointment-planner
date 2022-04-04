@@ -13,26 +13,22 @@ function App() {
   Implement functions to add data to
   contacts and appointments
   */
-  const [contacts, setContacts] = useState([{}]);
-  const addContact = (name, email, number) => {
-    setContacts((prev) => ({
-      ...prev,
-      Name: name,
-      Email: email,
-      Number: number
-    }));
-  };
-  // console.log(addContact)
+  const [contacts, setContacts] = useState([{
+    name: 'Haydn',
+    phone: '0791751751',
+    email: 'haydn@gmail.com'
+  }]);
 
-  const [appointments, setAppointments] = useState([{}]);
+  const addContact = (name, phone, email) => {
+    setContacts(prev => [...prev, {name: name, phone: phone, email: email}]);
+    
+  };
+  console.log(contacts);
+  
+  const [appointments, setAppointments] = useState([]);
+
   const addAppointment = (title, contact, time) => {
-    setAppointments((prev) => ({
-      ...prev,
-      Title: title,
-      Contact: contact,
-      Date: new Date(),
-      Time: time
-    }));
+    setAppointments(prev => [...prev, {title: title, contact: contact, time: time}]);
   };
   // console.log(addAppointment)
 
@@ -55,13 +51,13 @@ function App() {
             <ContactsPage 
               contacts={contacts}
               addContact={addContact}
-              />
+            />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
             <AppointmentsPage 
               appointments={appointments}
               addAppointment={addAppointment}
-              />
+            />
           </Route>
         </Switch>
       </main>
