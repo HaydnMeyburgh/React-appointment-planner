@@ -2,14 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ContactForm } from '../../components/contactForm/ContactForm.js';
 import { TileList } from '../../components/tileList/TileList.js';
 
-export const ContactsPage = (props) => {
-  /*
-  Define state variables for 
-  contact info and duplicate check
-  */
-  const contacts = props.contacts;
-  const addContacts = props.addContact;
-
+export const ContactsPage = ({contacts, addContact}) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -17,22 +10,17 @@ export const ContactsPage = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    /*
-    Add contact info and clear data
-    if the contact name is not a duplicate
-    */
+    // Add contact info and clear data if the contact name is not a duplicate
     if (duplicateCheck === false) {
-      addContacts(name, phone, email);
+      addContact(name, phone, email);
       setEmail('');
       setName('');
       setPhone('');
     } 
   };
-  /*
-  Using hooks, check for contact name in the 
-  contacts array variable in props
-  */
-  useEffect(() => {
+  
+  //check for contact name in the contacts array variable in props  
+  useEffect(() => { //useEffect isnt being called when the name state is changing... Need to fix this as duplicateCheck remains true even if name state is changed
     for (const contact of contacts){
       if (name === contact.name) {
         alert('This name is a duplicate, please use another');
