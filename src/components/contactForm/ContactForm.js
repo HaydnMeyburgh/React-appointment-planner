@@ -15,22 +15,22 @@ export const ContactForm = ({
         type='text' 
         name="name"
         value={name} 
-        onChange={e => setName(e.target.value)}
+        onChange={({target}) => setName(target.value)}
       />
       <input placeholder="Email" 
         type='email' 
         name="email" 
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={({target}) => setEmail(target.value)}
       />
       <input placeholder="Phone Number" 
-        type='number' 
+        type='tel' 
         name="phone" 
         value={phone} 
         pattern="^(27|0)[0-9]{9}"
-        onChange={e => setPhone(e.target.value)} 
+        onChange={({target}) => setPhone(target.value)} 
       />
-      <button>Submit</button>
+      <input type='submit' />
     </form>
   );
 };
