@@ -21,16 +21,13 @@ function App() {
 
   const addContact = (name, phone, email) => {
     setContacts(prev => [...prev, {name: name, phone: phone, email: email}]);
-    
   };
-  console.log(contacts);
   
   const [appointments, setAppointments] = useState([]);
 
-  const addAppointment = (title, contact, time) => {
-    setAppointments(prev => [...prev, {title: title, contact: contact, time: time}]);
+  const addAppointment = (title, contact, date, time) => {
+    setAppointments(prev => [...prev, {title: title, contact: contact, date: date, time: time}]);
   };
-  // console.log(addAppointment)
 
   return (
     <>
@@ -54,7 +51,8 @@ function App() {
             />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
-            <AppointmentsPage 
+            <AppointmentsPage
+              contacts={contacts} 
               appointments={appointments}
               addAppointment={addAppointment}
             />
